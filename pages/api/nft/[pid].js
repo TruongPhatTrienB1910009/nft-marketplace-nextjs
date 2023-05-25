@@ -24,7 +24,13 @@ export default async function handler(req, res) {
     const { pid } = req.query;
     const Type = await getNftType(pid);
     data[Type].nftType = Number(Type);
-    data[Type].name += ` #${pid}`
+    if (pid == 0) {
+        data[Type].name = `Silver Box #${pid}`;
+    } else if (pid == 1) {
+        data[Type].name = `Gold Box #${pid}`;
+    } else if (pid == 2) {
+        data[Type].name = `Ruby Box #${pid}`;
+    }
 
     res.send(data[Type]);
 }
